@@ -17,7 +17,7 @@ public class PacManhattanAI extends AIStrategy
     private Deque<Direction> directionQueue;//Queue containing the potential directions to follow
     private AStarPath pathAStar; //The path calculates with AStar
     private boolean[][] visitedCase;//List to know if the square is yet visited or not
-    private final static int GHOST_DST_THRESHOLD = 14;//The threshold distance to move the player
+    private static int GHOST_DST_THRESHOLD = 14;//The threshold distance between the player and a ghost
     /**
      * The default constructor
      *
@@ -38,7 +38,6 @@ public class PacManhattanAI extends AIStrategy
     {
         visitedCase = new boolean[getBoard().getHeight()][getBoard().getWidth()];
         pathAStar = new AStarPath(game);
-        directionQueue = new ArrayDeque<>();
     }
 
     /**
@@ -48,34 +47,67 @@ public class PacManhattanAI extends AIStrategy
     @Override
     public Direction nextMove()
     {
-        Square square;
+        directionQueue = new ArrayDeque<>();//Initialisation of the queue containing best moves
+        boolean warning = false;//Boolean to know if a ghost is near of the player or not
+        updatePacmanbehaviour(game.getLevel().remainingPellets());//Accelerate the endgame
+
         for(Ghost ghost : getGhostsList())
         {
-            double distance = AStarPath.ManhattanDistance(getPlayer().getSquare().getX(), getPlayer().getSquare().getY(), ghost.getSquare().getX(), ghost.getSquare().getY());
+            //Test if a ghost is near of the player
+            double distance = AStarPath.manhattanDistance(getPlayer().getSquare().getX(), getPlayer().getSquare().getY(), ghost.getSquare().getX(), ghost.getSquare().getY());
             if (distance < GHOST_DST_THRESHOLD)
             {
-                square = BFSNearestSafetySquare();
-                computePath(square);
+                computePath(BFSNearestSafetySquare());
+                warning = true;
+                break;
             }
         }
-        //If there is no safety path found (or ghosts are far), calculate the nearest safety square where there is a pellet
-        if (directionQueue.isEmpty())
+        if(warning == false)
         {
+            //There is no near ghost, thus find the nearest pellet
             computePath(BFSNearestSafetyPelletSquare());
+        }
 
-            if (!directionQueue.isEmpty())
-            {
-                return directionQueue.removeFirst();
-
-            }
-            else
-            {
-                return getPlayer().getDirection();
-            }
+        if (!directionQueue.isEmpty())
+        {
+            //Apply the best move
+            return directionQueue.removeFirst();
         }
         else
         {
-            return directionQueue.removeFirst();
+            if(warning == true)
+            {
+                //No safe square found, find the nearest pellet
+                computePath(BFSNearestSafetyPelletSquare());
+                if(!directionQueue.isEmpty())
+                {
+                    return directionQueue.removeFirst();
+                }
+                else
+                {
+                    //No path found, find a other direction
+                    return hurryMove();
+                }
+            }
+            else if(warning == false)
+            {
+                //No path found to a nearest pellet, find a safe square
+                computePath( BFSNearestSafetySquare());
+                if(!directionQueue.isEmpty())
+                {
+                    return directionQueue.removeFirst();
+                }
+                else
+                {
+                    //No path found, find a other direction
+                    return hurryMove();
+                }
+            }
+            else
+            {
+                //No path found, find a other direction
+                return hurryMove();
+            }
         }
     }
 
@@ -124,7 +156,7 @@ public class PacManhattanAI extends AIStrategy
         {
             visitedCase[getPlayer().getSquare().getY()][getPlayer().getSquare().getX()] = true;
         }
-        while (squareQueue.isEmpty()==false)
+        while (!squareQueue.isEmpty())
         {
             Square square = squareQueue.remove();
             if (square.getOccupants().size() > 0 && square.getOccupants().get(0) instanceof Pellet)
@@ -138,7 +170,7 @@ public class PacManhattanAI extends AIStrategy
                 {
                     if(neighborSquare != null)
                     {
-                        if(visitedCase[neighborSquare.getY()][neighborSquare.getX()] == false)
+                        if(!visitedCase[neighborSquare.getY()][neighborSquare.getX()])
                         {
                             squareQueue.add(neighborSquare);
                         }
@@ -285,7 +317,7 @@ public class PacManhattanAI extends AIStrategy
     {
         for (Ghost ghost : getGhostsList())
         {
-            double distance = AStarPath.ManhattanDistance(square.getX(), square.getY(), ghost.getSquare().getX(), ghost.getSquare().getY());
+            double distance = AStarPath.manhattanDistance(square.getX(), square.getY(), ghost.getSquare().getX(), ghost.getSquare().getY());
             if (distance < GHOST_DST_THRESHOLD)
             {
                 return false;
@@ -294,11 +326,80 @@ public class PacManhattanAI extends AIStrategy
         return true;
     }
 
+
+    /**
+     * FInd a not optimised direction in last resort (No best move found)
+     * @return a not optimised direction
+     */
+    public Direction hurryMove()
+    {
+        if(getPlayer().getSquare().getSquareAt(getPlayer().getDirection()).isAccessibleTo(getPlayer()))
+        {
+            return getPlayer().getDirection();
+        }
+        else
+        {
+            if(getPlayer().getDirection() == Direction.WEST || getPlayer().getDirection() == Direction.EAST)
+            {
+                return Direction.SOUTH;
+            }
+            else
+            {
+                return Direction.EAST;
+            }
+        }
+    }
+
+    /**
+     * Define the pacman Behavior in the game
+     * @param pelletNbr the pellets number remaining in the game
+     */
+    private void updatePacmanbehaviour(int pelletNbr)
+    {
+        if(pelletNbr <= 30)
+        {
+            if(pelletNbr <= 7)
+            {
+                //Pacman must recover the last pellets to finish
+                setGhostDstThreshold(3);
+            }
+            else
+            {
+                //The pacman play safety and recover pellets if he can
+                setGhostDstThreshold(6);
+            }
+        }
+        else
+        {
+            //Pacman play safety
+            setGhostDstThreshold(14);
+        }
+    }
+
+
     /**
      * No Strategy to execute for the AI
      */
     @Override
     public void executeStrategy() {}
+
+    /**
+     * Get the GHOST_DST_THRESHOLD
+     * @return GHOST_DST_THRESHOLD
+     */
+    public int getGhostDstThreshold()
+    {
+        return GHOST_DST_THRESHOLD;
+    }
+
+    /**
+     * Set the GHOST_DST_THRESHOLD
+     * @param ghostDst the new GHOST_DST_THRESHOLD
+     */
+    public void setGhostDstThreshold(int ghostDst)
+    {
+        GHOST_DST_THRESHOLD = ghostDst;
+    }
 
 }
 

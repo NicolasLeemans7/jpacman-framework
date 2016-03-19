@@ -1,4 +1,4 @@
-package nl.tudelft.jpacman.Strategie;
+package nl.tudelft.jpacman.strategy;
 
 import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.board.Direction;
@@ -6,7 +6,6 @@ import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Pellet;
 import nl.tudelft.jpacman.level.Player;
-import nl.tudelft.jpacman.strategy.PacManhattanAI;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -277,5 +276,27 @@ public class PacManhattanAITest
 
         assertEquals(dir.getFirst(), Direction.EAST);
         assertEquals(dir.getLast(), Direction.NORTH);
+    }
+
+    /**
+     * Test the choose of the direction in the last resort (No Best Direction found)
+     */
+    @SuppressWarnings("methodlength")
+    @Test
+    public void HurryMoveTest()
+    {
+        Game game = launcher.getGame();
+        Player player = game.getPlayers().get(0);
+        assertNotNull(player.getSquare());
+        assertEquals(player.getSquare().getX(), 11);
+        assertEquals(player.getSquare().getY(), 15);
+
+        PacManhattanAI AI = new PacManhattanAI(game);
+
+        assertEquals(AI.hurryMove(), Direction.EAST);
+
+        assertEquals(AI.getGhostDstThreshold(), 14);
+        AI.setGhostDstThreshold(7);
+        assertEquals(AI.getGhostDstThreshold(), 7);
     }
 }

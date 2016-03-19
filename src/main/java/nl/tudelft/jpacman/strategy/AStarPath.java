@@ -53,7 +53,7 @@ public class AStarPath extends AStar<Square>
      * @param b the y coordinate from second point
      * @return the value of the distance
      */
-    public static double ManhattanDistance(double x, double y, double a, double b)
+    public static double manhattanDistance(double x, double y, double a, double b)
     {
         return Math.abs(a - x) + Math.abs(b - y);
     }
@@ -184,7 +184,7 @@ public class AStarPath extends AStar<Square>
     @Override
     public Double h(Square originSquare, Square destinationSquare)
     {
-        return ManhattanDistance(originSquare.getX(),originSquare.getY(),destinationSquare.getX(),destinationSquare.getY());
+        return manhattanDistance(originSquare.getX(),originSquare.getY(),destinationSquare.getX(),destinationSquare.getY());
     }
 
 
@@ -198,7 +198,7 @@ public class AStarPath extends AStar<Square>
 
         for (Ghost ghost : ghosts)
         {
-            double dst = ManhattanDistance(destinationSquare.getX(), destinationSquare.getY(), ghost.getSquare().getX(), ghost.getSquare().getY());
+            double dst = manhattanDistance(destinationSquare.getX(), destinationSquare.getY(), ghost.getSquare().getX(), ghost.getSquare().getY());
             if (dst < DST_THRESHOLD)
             {
                 return true;

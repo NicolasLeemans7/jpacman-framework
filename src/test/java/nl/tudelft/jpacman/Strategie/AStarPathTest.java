@@ -81,13 +81,13 @@ public class AStarPathTest
     public void ManhattanDistanceTest()
     {
 
-        assertEquals(AStarPath.ManhattanDistance(0,0,0,0), 0.0);
-        assertEquals(AStarPath.ManhattanDistance(0,1,1,1), 1.0);
-        assertEquals(AStarPath.ManhattanDistance(5,3,2,1), 5.0);
-        assertEquals(AStarPath.ManhattanDistance(1,4,2,0), 5.0);
-        assertEquals(AStarPath.ManhattanDistance(-1,-8,-3,-1), 9.0);
-        assertEquals(AStarPath.ManhattanDistance(-0,-0,-0,-0), 0.0);
-        assertEquals(AStarPath.ManhattanDistance(-2,-2,-1,-1), 2.0);
+        assertEquals(AStarPath.manhattanDistance(0,0,0,0), 0.0);
+        assertEquals(AStarPath.manhattanDistance(0,1,1,1), 1.0);
+        assertEquals(AStarPath.manhattanDistance(5,3,2,1), 5.0);
+        assertEquals(AStarPath.manhattanDistance(1,4,2,0), 5.0);
+        assertEquals(AStarPath.manhattanDistance(-1,-8,-3,-1), 9.0);
+        assertEquals(AStarPath.manhattanDistance(-0,-0,-0,-0), 0.0);
+        assertEquals(AStarPath.manhattanDistance(-2,-2,-1,-1), 2.0);
     }
 
     /**
