@@ -89,7 +89,7 @@ public class PacManhattanAI extends AIStrategy
                     return hurryMove();
                 }
             }
-            else if(warning == false)
+            else
             {
                 //No path found to a nearest pellet, find a safe square
                 computePath( BFSNearestSafetySquare());
@@ -102,11 +102,6 @@ public class PacManhattanAI extends AIStrategy
                     //No path found, find a other direction
                     return hurryMove();
                 }
-            }
-            else
-            {
-                //No path found, find a other direction
-                return hurryMove();
             }
         }
     }

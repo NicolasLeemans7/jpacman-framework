@@ -540,51 +540,35 @@ public class Level {
         {
             if(direction.equals(Direction.NORTH))
             {
-                if( player.getSquare().getSquareAt(Direction.EAST).isAccessibleTo(player) ||
+                if(player.getSquare().getSquareAt(Direction.EAST).isAccessibleTo(player) ||
                         player.getSquare().getSquareAt(Direction.WEST).isAccessibleTo(player))
-                {
                     return true;
-                }
                 else
-                {
                     return false;
-                }
             }
             if(direction.equals(Direction.SOUTH))
             {
                 if(player.getSquare().getSquareAt(Direction.EAST).isAccessibleTo(player) ||
                         player.getSquare().getSquareAt(Direction.WEST).isAccessibleTo(player))
-                {
                     return true;
-                }
                 else
-                {
                     return false;
-                }
             }
             else if(direction.equals(Direction.EAST))
             {
                 if(player.getSquare().getSquareAt(Direction.NORTH).isAccessibleTo(player) ||
                         player.getSquare().getSquareAt(Direction.SOUTH).isAccessibleTo(player))
-                {
                     return true;
-                }
                 else
-                {
                     return false;
-                }
             }
             else
             {
                 if(player.getSquare().getSquareAt(Direction.NORTH).isAccessibleTo(player) ||
                         player.getSquare().getSquareAt(Direction.SOUTH).isAccessibleTo(player))
-                {
                     return true;
-                }
                 else
-                {
                     return false;
-                }
             }
         }
     }

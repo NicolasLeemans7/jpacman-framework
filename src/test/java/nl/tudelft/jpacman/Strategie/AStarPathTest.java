@@ -270,7 +270,6 @@ public class AStarPathTest
         assertFalse(aStarPath.nearestGhosts(player.getSquare().getSquareAt(Direction.NORTH).getSquareAt(Direction.NORTH).getSquareAt(Direction.NORTH)));
 
 
-        //The next north case is dangerous.
         assertTrue(aStarPath.nearestGhosts(player.getSquare().getSquareAt(Direction.NORTH).getSquareAt(Direction.NORTH).getSquareAt(Direction.NORTH).getSquareAt(Direction.NORTH)));
         assertTrue(aStarPath.nearestGhosts(player.getSquare().getSquareAt(Direction.NORTH).getSquareAt(Direction.NORTH).getSquareAt(Direction.NORTH).getSquareAt(Direction.NORTH).getSquareAt(Direction.NORTH)));
 
