@@ -1,19 +1,14 @@
-package nl.tudelft.jpacman.Strategie;
+package nl.tudelft.jpacman.strategy;
 
 import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Player;
-import nl.tudelft.jpacman.strategy.AIStrategy;
-import nl.tudelft.jpacman.strategy.HumanControllerStrategy;
-import nl.tudelft.jpacman.strategy.PacManhattanAI;
-import nl.tudelft.jpacman.strategy.PacmanStrategy;
 import nl.tudelft.jpacman.ui.PacManUiBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 import static org.junit.Assert.*;
 

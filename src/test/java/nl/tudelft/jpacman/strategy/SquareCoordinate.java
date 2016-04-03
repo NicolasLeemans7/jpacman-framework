@@ -1,4 +1,4 @@
-package nl.tudelft.jpacman.Strategie;
+package nl.tudelft.jpacman.strategy;
 
 import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.board.Direction;

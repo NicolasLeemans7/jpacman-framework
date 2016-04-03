@@ -1,4 +1,4 @@
-package nl.tudelft.jpacman.Strategie;
+package nl.tudelft.jpacman.strategy;
 
 import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.board.Direction;
@@ -64,8 +64,8 @@ public class MoveContinuTest
 
         //Test continu movement
         game.moveContinu(player, Direction.EAST);
-        //Attendre 400 ms
-        Thread.sleep(1500);
+        //wait 1800 ms
+        Thread.sleep(1800);
         assertEquals(60, player.getScore());
     }
 
@@ -88,8 +88,8 @@ public class MoveContinuTest
 
         //Test continu movement
         game.moveContinu(player, Direction.WEST);
-        //Attendre 400 ms
-        Thread.sleep(1500);
+        //wait 1800 ms
+        Thread.sleep(1800);
         assertEquals(60, player.getScore());
     }
 
@@ -112,13 +112,13 @@ public class MoveContinuTest
 
         //Test continu movement
         game.moveContinu(player, Direction.WEST);
-        //Wait 400 ms
-        Thread.sleep(1500);
+        //Wait 1800 ms
+        Thread.sleep(1800);
         assertEquals(60, player.getScore());
 
         game.moveContinu(player, Direction.SOUTH);
-        //wait 600 ms
-        Thread.sleep(600);
+        //wait 800 ms
+        Thread.sleep(800);
         assertEquals(80, player.getScore());
 
     }
@@ -142,13 +142,13 @@ public class MoveContinuTest
 
         //Test continu movement
         game.moveContinu(player, Direction.EAST);
-        //wait 1500 ms
-        Thread.sleep(1500);
+        //wait 1800 ms
+        Thread.sleep(1800);
         assertEquals(60, player.getScore());
 
         game.moveContinu(player, Direction.SOUTH);
-        //wait 1000 ms
-        Thread.sleep(600);
+        //wait 800 ms
+        Thread.sleep(800);
         assertEquals(80, player.getScore());
 
     }
@@ -172,8 +172,8 @@ public class MoveContinuTest
 
         //Test continu movement
         game.moveContinu(player, Direction.EAST);
-        //wait 1500 ms
-        Thread.sleep(1500);
+        //wait 1800 ms
+        Thread.sleep(1800);
         assertEquals(60, player.getScore());
 
         //No pellet remaining, the score stay the same
@@ -182,8 +182,8 @@ public class MoveContinuTest
 
         //Go back and no pellet remaining
         game.moveContinu(player, Direction.WEST);
-        //wait 1000 ms
-        Thread.sleep(1000);
+        //wait 1200 ms
+        Thread.sleep(1200);
         assertEquals(60, player.getScore());
     }
 }

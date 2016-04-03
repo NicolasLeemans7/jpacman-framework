@@ -1,11 +1,10 @@
-package nl.tudelft.jpacman.Strategie;
+package nl.tudelft.jpacman.strategy;
 
 import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Player;
-import nl.tudelft.jpacman.strategy.AStarPath;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -154,7 +153,7 @@ public class AStarPathTest
         game.move(player, Direction.EAST);
         Square square2 = player.getSquare();
 
-        assertFalse(square == square2);
+        assertFalse(square.equals(square2));
 
         List<Square> neigborList2 = aStarPath.getValidNeighbors(square2,player);
 
@@ -205,7 +204,7 @@ public class AStarPathTest
         game.move(player, Direction.WEST);
         Square square2 = player.getSquare();
 
-        assertFalse(square == square2);
+        assertFalse(square.equals(square2));
 
         List<Square> neigborList2 = aStarPath.getValidNeighbors(square2,player);
 
@@ -228,8 +227,8 @@ public class AStarPathTest
 
         Square square3 = player.getSquare();
 
-        assertFalse(square == square3);
-        assertFalse(square2 == square3);
+        assertFalse(square.equals(square3));
+        assertFalse(square2.equals(square3));
 
 
         List<Square> neigborList3 = aStarPath.getValidNeighbors(square3,player);
