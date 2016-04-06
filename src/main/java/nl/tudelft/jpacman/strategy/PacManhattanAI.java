@@ -174,7 +174,7 @@ public class PacManhattanAI extends AIStrategy
                 }
             }
         }
-        return null;
+        return getPlayer().getSquare();
     }
 
     /**
@@ -262,7 +262,7 @@ public class PacManhattanAI extends AIStrategy
                 }
             }
         }
-        return null;
+        return getPlayer().getSquare();
     }
 
     /**
