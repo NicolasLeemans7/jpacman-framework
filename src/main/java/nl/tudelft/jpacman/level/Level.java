@@ -1,14 +1,5 @@
 package nl.tudelft.jpacman.level;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
 import nl.tudelft.jpacman.board.Board;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
@@ -17,6 +8,15 @@ import nl.tudelft.jpacman.npc.NPC;
 import nl.tudelft.jpacman.npc.ghost.Ghost;
 import nl.tudelft.jpacman.strategy.AIStrategy;
 import nl.tudelft.jpacman.strategy.PacmanStrategy;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A level of Pac-Man. A level consists of the board with the players and the
@@ -229,6 +229,11 @@ public class Level {
             {
                 startAIStrategy();
             }
+            else
+            {
+                if(strategy != null)
+                    strategy.executeStrategy();
+            }
             updateObservers();
         }
     }
@@ -250,23 +255,6 @@ public class Level {
             inProgress = false;
         }
     }
-
-
-    /**
-     * Starts or resumes the AI
-     * @param strategy
-     */
-    public void startStrategy(PacmanStrategy strategy)
-    {
-        this.strategy = strategy;
-        synchronized (startStopLock) {
-            if (isInProgress()) {
-                return;
-            }
-            strategy.executeStrategy();
-        }
-    }
-
 
 
     /**
@@ -395,6 +383,10 @@ public class Level {
     public ArrayList<Ghost> getGhostList()
     {
         return ghostList;
+    }
+
+    public void setStrategy(PacmanStrategy strategy) {
+        this.strategy = strategy;
     }
 
     /**

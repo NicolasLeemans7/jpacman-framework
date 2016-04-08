@@ -63,7 +63,7 @@ public class MoveContinuTest
         assertEquals(0, player.getScore());
 
         //Test continu movement
-        game.moveContinu(player, Direction.EAST);
+        game.continousMovement(player, Direction.EAST);
         //wait 1800 ms
         Thread.sleep(1800);
         assertEquals(60, player.getScore());
@@ -87,7 +87,7 @@ public class MoveContinuTest
         assertEquals(0, player.getScore());
 
         //Test continu movement
-        game.moveContinu(player, Direction.WEST);
+        game.continousMovement(player, Direction.WEST);
         //wait 1800 ms
         Thread.sleep(1800);
         assertEquals(60, player.getScore());
@@ -111,12 +111,12 @@ public class MoveContinuTest
         assertEquals(0, player.getScore());
 
         //Test continu movement
-        game.moveContinu(player, Direction.WEST);
+        game.continousMovement(player, Direction.WEST);
         //Wait 1800 ms
         Thread.sleep(1800);
         assertEquals(60, player.getScore());
 
-        game.moveContinu(player, Direction.SOUTH);
+        game.continousMovement(player, Direction.SOUTH);
         //wait 800 ms
         Thread.sleep(800);
         assertEquals(80, player.getScore());
@@ -141,12 +141,12 @@ public class MoveContinuTest
         assertEquals(0, player.getScore());
 
         //Test continu movement
-        game.moveContinu(player, Direction.EAST);
+        game.continousMovement(player, Direction.EAST);
         //wait 1800 ms
         Thread.sleep(1800);
         assertEquals(60, player.getScore());
 
-        game.moveContinu(player, Direction.SOUTH);
+        game.continousMovement(player, Direction.SOUTH);
         //wait 800 ms
         Thread.sleep(800);
         assertEquals(80, player.getScore());
@@ -171,7 +171,7 @@ public class MoveContinuTest
         assertEquals(0, player.getScore());
 
         //Test continu movement
-        game.moveContinu(player, Direction.EAST);
+        game.continousMovement(player, Direction.EAST);
         //wait 1800 ms
         Thread.sleep(1800);
         assertEquals(60, player.getScore());
@@ -181,7 +181,7 @@ public class MoveContinuTest
         assertEquals(60, player.getScore());
 
         //Go back and no pellet remaining
-        game.moveContinu(player, Direction.WEST);
+        game.continousMovement(player, Direction.WEST);
         //wait 1200 ms
         Thread.sleep(1200);
         assertEquals(60, player.getScore());

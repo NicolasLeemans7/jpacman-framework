@@ -57,7 +57,7 @@ public class PacManhattanAI extends AIStrategy
             double distance = AStarPath.manhattanDistance(getPlayer().getSquare().getX(), getPlayer().getSquare().getY(), ghost.getSquare().getX(), ghost.getSquare().getY());
             if (distance < GHOST_DST_THRESHOLD)
             {
-                computePath(BFSNearestSafetySquare());
+                computePath(bfsNearestSafetySquare());
                 warning = true;
                 break;
             }
@@ -65,7 +65,7 @@ public class PacManhattanAI extends AIStrategy
         if(warning == false)
         {
             //There is no near ghost, thus find the nearest pellet
-            computePath(BFSNearestSafetyPelletSquare());
+            computePath(bfsNearestSafetyPelletSquare());
         }
 
         if (!directionQueue.isEmpty())
@@ -78,7 +78,7 @@ public class PacManhattanAI extends AIStrategy
             if(warning == true)
             {
                 //No safe square found, find the nearest pellet
-                computePath(BFSNearestSafetyPelletSquare());
+                computePath(bfsNearestSafetyPelletSquare());
                 if(!directionQueue.isEmpty())
                 {
                     return directionQueue.removeFirst();
@@ -92,7 +92,7 @@ public class PacManhattanAI extends AIStrategy
             else
             {
                 //No path found to a nearest pellet, find a safe square
-                computePath( BFSNearestSafetySquare());
+                computePath(bfsNearestSafetySquare());
                 if(!directionQueue.isEmpty())
                 {
                     return directionQueue.removeFirst();
@@ -135,7 +135,7 @@ public class PacManhattanAI extends AIStrategy
      * The search used is the Breadth First Search
      * @return the nearest safe square where there is a pellet, null if no safe pellet found
      */
-    public Square BFSNearestSafetyPelletSquare()
+    public Square bfsNearestSafetyPelletSquare()
     {
         for (int i = 0; i < getBoard().getHeight(); i++)
         {
@@ -231,7 +231,7 @@ public class PacManhattanAI extends AIStrategy
      * Compute a BFS to know the nearest safety square
      * @return the nearest safety square, null if there is'nt
      */
-    public Square BFSNearestSafetySquare()
+    public Square bfsNearestSafetySquare()
     {
         for (int i = 0; i < getBoard().getHeight(); ++i)
         {

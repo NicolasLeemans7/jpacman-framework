@@ -121,7 +121,7 @@ public class MyJDialogStrategy extends JDialog
                 strategy = new PacManhattanAI(game);
                 System.out.println("The chosen strategy is : " + strategy.getTypeStrategy());
             }
-            game.setStrategy(strategy);
+            game.getLevel().setStrategy(strategy);
             setVisible(false);
             dispose();
             pacManUI.start();

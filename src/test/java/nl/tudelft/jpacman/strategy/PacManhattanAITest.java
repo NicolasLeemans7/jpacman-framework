@@ -114,7 +114,7 @@ public class PacManhattanAITest
         assertEquals(player.getSquare().getY(), 15);
         PacManhattanAI AI = new PacManhattanAI(game);
 
-        Square square = AI.BFSNearestSafetySquare();
+        Square square = AI.bfsNearestSafetySquare();
 
         assertNotNull(square);
         assertTrue(square.getX() == 19);
@@ -171,7 +171,7 @@ public class PacManhattanAITest
         assertEquals(player.getSquare().getY(), 15);
         PacManhattanAI AI = new PacManhattanAI(game);
 
-        Square safetyPelletSquare = AI.BFSNearestSafetyPelletSquare();
+        Square safetyPelletSquare = AI.bfsNearestSafetyPelletSquare();
         assertTrue(safetyPelletSquare.getOccupants().get(0) instanceof Pellet);
 
         assertTrue(player.getSquare().getSquareAt(Direction.EAST) == safetyPelletSquare);

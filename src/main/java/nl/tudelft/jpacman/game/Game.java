@@ -1,17 +1,15 @@
 package nl.tudelft.jpacman.game;
 
-import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Level.LevelObserver;
 import nl.tudelft.jpacman.level.Player;
-import nl.tudelft.jpacman.strategy.PacmanStrategy;
-import nl.tudelft.jpacman.ui.PacManUiBuilder;
+
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A basic implementation of a Pac-Man game.
@@ -24,13 +22,7 @@ public abstract class Game implements LevelObserver {
 	 * <code>true</code> if the game is in progress.
 	 */
 
-    /**
-     *  The chosen strategy by the player
-     */
-    private PacmanStrategy strategy;
-
     private boolean inProgress;
-    private PacManUiBuilder builder;//The builder
 
 	/**
 	 * Object that locks the start and stop methods.
@@ -59,10 +51,6 @@ public abstract class Game implements LevelObserver {
             if (isInProgress()) {
 				return;
 			}
-            if(strategy != null)
-            {
-                getLevel().startStrategy(strategy);
-            }
             if (getLevel().isAnyPlayerAlive()
 					&& getLevel().remainingPellets() > 0) {
 				inProgress = true;
@@ -115,7 +103,7 @@ public abstract class Game implements LevelObserver {
 	 * @param direction
 	 *            The direction to move in.
 	 */
-	public void moveContinu(Player player, Direction direction)
+	public void continousMovement(Player player, Direction direction)
     {
         if (isInProgress())
         {
@@ -163,39 +151,6 @@ public abstract class Game implements LevelObserver {
 		stop();
 	}
 
-    /**
-     * Get the builder
-     * @return the builder
-     */
-    public PacManUiBuilder getBuilder() {
-        return builder;
-    }
-
-    /**
-     * Set the builder
-     * @param builder the builder to set
-     */
-    public void setBuilder(PacManUiBuilder builder) {
-        this.builder = builder;
-    }
-
-    /**
-     * Get the chosen strategy
-     * @return the chosen strategy
-     */
-    public PacmanStrategy getStrategy()
-    {
-        return strategy;
-    }
-
-    /**
-     * Set the Strategy
-     * @param strategy the strategy to set
-     */
-    public void setStrategy(PacmanStrategy strategy)
-    {
-        this.strategy = strategy;
-    }
 
     /**
      * Class representing the timer and methods to apply during the timer

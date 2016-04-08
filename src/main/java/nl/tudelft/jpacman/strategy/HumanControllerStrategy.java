@@ -54,7 +54,7 @@ public class HumanControllerStrategy extends PacmanStrategy
             @Override
             public void doAction()
             {
-                game.moveContinu(p1, Direction.NORTH);
+                game.continousMovement(p1, Direction.NORTH);
 
             }
         }).addKey(KeyEvent.VK_DOWN, new Action()
@@ -63,7 +63,7 @@ public class HumanControllerStrategy extends PacmanStrategy
             @Override
             public void doAction()
             {
-                game.moveContinu(p1, Direction.SOUTH);
+                game.continousMovement(p1, Direction.SOUTH);
             }
         }).addKey(KeyEvent.VK_LEFT, new Action()
         {
@@ -71,7 +71,7 @@ public class HumanControllerStrategy extends PacmanStrategy
             @Override
             public void doAction()
             {
-                game.moveContinu(p1, Direction.WEST);
+                game.continousMovement(p1, Direction.WEST);
             }
         }).addKey(KeyEvent.VK_RIGHT, new Action()
         {
@@ -79,7 +79,7 @@ public class HumanControllerStrategy extends PacmanStrategy
             @Override
             public void doAction()
             {
-                game.moveContinu(p1, Direction.EAST);
+                game.continousMovement(p1, Direction.EAST);
             }
         });
 
