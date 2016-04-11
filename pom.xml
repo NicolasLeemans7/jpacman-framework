@@ -10,14 +10,14 @@
 
 	<groupId>nl.tudelft.jpacman</groupId>
 	<artifactId>jpacman-framework</artifactId>
-	<version>6.3.0</version>
-	<url>https://github.com/serg-delft/jpacman-framework</url>
+	<version>7.0.0</version>
+	<url>https://github.com/NicolasLeemans7/jpacman-framework</url>
 	<description>
         Pacman-inspired game, for teaching testing purposes.
     </description>
 	<organization>
 		<url>http://www.tudelft.nl</url>
-		<name>Delft University of Technology</name>
+		<name>Delft University of Technology (extended by UMONS students)</name>
 	</organization>
 	<licenses>
 		<license>

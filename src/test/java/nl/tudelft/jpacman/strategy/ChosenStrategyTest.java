@@ -28,7 +28,7 @@ public class ChosenStrategyTest
     public void setUpPacman()
     {
         launcher = new Launcher();
-        launcher.launch();
+        launcher.launch(true);
     }
 
     /**

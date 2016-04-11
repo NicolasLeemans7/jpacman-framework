@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Nicolas Leemans on 10/03/16.
@@ -29,7 +28,7 @@ public class SquareCoordinate {
     @Before
     public void setUpPacman() {
         launcher = new Launcher();
-        launcher.launch();
+        launcher.launch(true);
     }
 
     /**

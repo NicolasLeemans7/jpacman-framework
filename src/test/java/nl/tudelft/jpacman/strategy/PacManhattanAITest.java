@@ -32,7 +32,7 @@ public class PacManhattanAITest
     @Before
     public void setUpPacman() {
         launcher = new Launcher();
-        launcher.launch();
+        launcher.launch(true);
     }
 
     /**

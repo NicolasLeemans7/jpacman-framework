@@ -180,11 +180,12 @@ public class Launcher
 	/**
 	 * Creates and starts a JPac-Man game.
 	 */
-	public void launch() {
+	public void launch(boolean test) {
 		game = makeGame();
 		builder = new PacManUiBuilder().withDefaultButtons();
 		pacManUI = builder.build(game);
-		buildWindow();
+		if(!test)
+			buildWindow();
     }
 
 	/**
@@ -203,7 +204,7 @@ public class Launcher
 	 *             When a resource could not be read.
 	 */
 	public static void main(String[] args) throws IOException {
-		new Launcher().launch();
+		new Launcher().launch(false);
 	}
 
 	/**
