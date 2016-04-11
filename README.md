@@ -33,4 +33,15 @@ Getting Started
 3. To see JPacman in action: run `nl.tudelft.jpacman.Launcher`
 4. To run the test suite in maven: `mvn test`
 5. To run the test suite in Eclipse: right click -> run as -> JUnit Test.
-	 
+
+Lancer le projet (Version Nicolas Leemans)
+------------------------------------------
+En considérant que Maven est correctement installé sur votre machine et en plaçant un terminal
+(une invite de commande ou autre terme décrivant une \og console \fg \, sur votre système d'exploitation) à la racine du projet (c'est-à-dire l'endroit où se trouve le fichier \nolinkurl{pom.xml}), vous pouvez :
+
+1.Exécuter les tests via : mvn test
+2.Compiler le projet (inclus l'exécution des tests) via : mvn compile
+3.Lancer le jeu via (après avoir compilé) via : mvn exec:java -Dexec.mainClass="nl.tudelft.jpacman.Launcher"
+4.Compiler le projet et produire une archive "jar" exécutable via : mvn package
+5.L'archive est ensuite exécutable via : java -jar target/jpacman-framework-7.3.0.jar
+
